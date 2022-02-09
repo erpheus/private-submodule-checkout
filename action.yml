@@ -15,3 +15,6 @@ runs:
         echo "$SSHK" > $HOME/.ssh/ssh.key
         chmod 600 $HOME/.ssh/ssh.key
         GIT_SSH_COMMAND="ssh -i $HOME/.ssh/ssh.key" git submodule update --init --recursive
+branding:
+  icon: arrow-down-circle
+  color: gray-dark
