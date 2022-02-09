@@ -1,0 +1,17 @@
+name: 'Private submodule checkout'
+description: 'It will checkout private submodules by using the provided deployment key'
+inputs:
+  deployment_key:
+    description: 'Key to use during submodule checkout'
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: checkout shared submodule
+      env:
+        SSH_KEY: ${{ inputs.deployment_key }}
+      run: |
+        mkdir -p $HOME/.ssh
+        echo "$SSHK" > $HOME/.ssh/ssh.key
+        chmod 600 $HOME/.ssh/ssh.key
+        GIT_SSH_COMMAND="ssh -i $HOME/.ssh/ssh.key" git submodule update --init --recursive
