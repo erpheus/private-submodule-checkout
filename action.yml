@@ -8,6 +8,7 @@ runs:
   using: "composite"
   steps:
     - name: checkout shared submodule
+      shell: bash
       env:
         SSH_KEY: ${{ inputs.deployment_key }}
       run: |
