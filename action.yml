@@ -14,14 +14,14 @@ runs:
       env:
         SSH_KEY: $ {{ inputs.deployment_key }}
       run: |
-        if [ "$SSH_KEY" = "" ]; then
+        if [ "${{ env.SSH_KEY }}" = "" ]; then
           echo "No SSH key detected, attempting public checkout"
           git submodule update --init --recursive
         else
           echo "SSH key detected, attempting private checkout"
           mkdir -p $HOME/.ssh
-          echo "$SSH_KEY" > $HOME/.ssh/ssh.key
-          chmod 600 /root/.ssh/ssh.key
+          echo "${{ env.SSH_KEY }}" > $HOME/.ssh/ssh.key
+          chmod 600 $HOME/.ssh/ssh.key
           export GIT_SSH_COMMAND="ssh -i $HOME/.ssh/ssh.key"
           git submodule update --init --recursive
         fi;
