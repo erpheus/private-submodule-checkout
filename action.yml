@@ -3,11 +3,12 @@ description: 'It will checkout private submodules by using the provided deployme
 inputs:
   deployment_key:
     description: 'Key to use during submodule checkout'
-    required: true
+    required: false
 runs:
   using: "composite"
   steps:
-    - name: checkout shared submodule
+    - name: checkout shared private submodule 
+      if: ${{ inputs.deployment_key }} != ""
       shell: bash
       env:
         SSH_KEY: ${{ inputs.deployment_key }}
@@ -16,6 +17,11 @@ runs:
         echo "$SSHK" > $HOME/.ssh/ssh.key
         chmod 600 $HOME/.ssh/ssh.key
         GIT_SSH_COMMAND="ssh -i $HOME/.ssh/ssh.key" git submodule update --init --recursive
+    - name: checkout shared public submodule 
+      if: ${{ inputs.deployment_key }} == ""
+      shell: bash
+      run: |
+        git submodule update --init --recursive
 branding:
   icon: arrow-down-circle
   color: gray-dark
