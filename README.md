@@ -4,7 +4,7 @@ Checkout private submodules by providing a deployment key to them
 Usage
 
 ```yaml
-- uses: erpheus/private-submodule-checkout@v1
+- uses: MikasaEureka/pub-private-submodule-checkout
   with:
     deployment_key: ${{ secrets.YOUR_DEPLOYMENT_KEY }}
 ```
