@@ -5,7 +5,7 @@ inputs:
     description: 'Key to use during submodule checkout'
     required: false
     defalut: ""
-    type: string
+
 runs:
   using: "composite"
   steps:
