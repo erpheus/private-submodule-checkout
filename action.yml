@@ -4,19 +4,23 @@ inputs:
   deployment_key:
     description: 'Key to use during submodule checkout'
     required: false
+  repo_pub:
+    defalut: true
+    required: true
+    type: boolean
 runs:
   using: "composite"
   steps:
     - name: checkout shared public submodule  
-      if: !${{ inputs.deployment_key }} 
+      if: ${{ inputs.repo_pub }}
       shell: bash
       run: |
         git submodule update --init --recursive
     - name: checkout shared private submodule 
-      if: ${{ inputs.deployment_key }} 
+      if: ! ${{ inputs.repo_pub }} 
       shell: bash
       env:
-        SSH_KEY: ${{ inputs.deployment_key }}
+        SSH_KEY: $ {{ inputs.deployment_key }}
       run: |
         mkdir -p $HOME/.ssh
         echo "$SSHK" > $HOME/.ssh/ssh.key

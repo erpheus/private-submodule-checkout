@@ -7,8 +7,11 @@ Usage
 - uses: MikasaEureka/pub-private-submodule-checkout
   with:
     deployment_key: ${{ secrets.YOUR_DEPLOYMENT_KEY }}
+    repo_pub: false
 or
 - uses: MikasaEureka/pub-private-submodule-checkout
+  with:
+    repo_pub: true
 ```
 
 Thanks to [this post](https://rgoswami.me/posts/priv-gh-actions/) by [Rohit Goswami](https://github.com/HaoZeke/).  
