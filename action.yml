@@ -4,7 +4,7 @@ inputs:
   deployment_key:
     description: 'Key to use during submodule checkout'
     required: false
-    defalut: ""
+    defalut: "No"
     type: string
 runs:
   using: "composite"
@@ -16,7 +16,7 @@ runs:
       run: |
         echo ${{ env.SSH_KEY }}
         echo $HOME
-        if [ ${{ env.SSH_KEY }} == "" ]; then
+        if [ ${{ env.SSH_KEY }} == "No" ]; then
           echo "No SSH key detected, attempting public checkout"
           git submodule update --init --recursive
         else
