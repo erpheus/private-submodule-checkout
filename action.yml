@@ -14,7 +14,7 @@ runs:
       env:
         SSH_KEY: $ {{ inputs.deployment_key }}
       run: |
-        if [ "${{ env.SSH_KEY }}" = "" ]; then
+        if [ ${{ env.SSH_KEY }} = "" ]; then
           echo "No SSH key detected, attempting public checkout"
           git submodule update --init --recursive
         else
