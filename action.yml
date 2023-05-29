@@ -1,5 +1,5 @@
-name: 'Private submodule checkout'
-description: 'It will checkout private submodules by using the provided deployment key'
+name: 'Pri/Pub submodule updates for github actions'
+description: 'It will checkout private or public submodules by using the provided deployment key or not'
 inputs:
   deployment_key:
     description: 'Key to use during submodule checkout'
