@@ -17,6 +17,7 @@ runs:
         if [[ "${{ env.SSH_KEY }}" == "" ]]; then
           echo "No SSH key detected, attempting public checkout"
           git submodule update --init --recursive
+          git submodule foreach 'git pull origin master'
         else
           echo "SSH key detected, attempting private checkout"
           mkdir -p $HOME/.ssh
@@ -24,6 +25,7 @@ runs:
           chmod 600 $HOME/.ssh/ssh.key
           export GIT_SSH_COMMAND="ssh -i $HOME/.ssh/ssh.key"
           git submodule update --init --recursive
+          git submodule foreach 'git pull origin master'
         fi;
 
 branding:
